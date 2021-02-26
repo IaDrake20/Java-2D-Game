@@ -13,11 +13,8 @@ import javax.swing.Timer;
 
 import java.util.Random;
 public class PingPong extends JPanel implements ActionListener,KeyListener {
-
 	
-
-	
-		Random random = new Random();
+		Random random = new Random(); //looks to be used for what direction the ball will take when it collides with something
 	
 		Timer tm = new Timer(5, this);
 		
@@ -39,6 +36,7 @@ public class PingPong extends JPanel implements ActionListener,KeyListener {
 		
 		int stopMove = 322;
 		
+		//method checks to see if 2 things collide
 		public static boolean overlap1( int x, int x2, int y, int y2) {
 		      //  System.out.println("called the method overlap1");
 		        boolean b1 = false;
@@ -48,7 +46,7 @@ public class PingPong extends JPanel implements ActionListener,KeyListener {
 		        }
 		        return b1;
 			}
-		
+		//graphic display
 		public void paintComponent(Graphics g) {
 			
 			super.paintComponent(g);
@@ -78,7 +76,7 @@ public class PingPong extends JPanel implements ActionListener,KeyListener {
 	    
 	    
 		
-		
+		//not sure what this does yet
 		public PingPong(){
 			tm.start();
 
@@ -89,7 +87,7 @@ public class PingPong extends JPanel implements ActionListener,KeyListener {
 			setFocusTraversalKeysEnabled(true);
 		}
 		
-		
+		//not sure what this does either
 		public void actionPerformed(ActionEvent e) {
 			
 			if (yPlayer2 > stopMove ) {
@@ -120,6 +118,7 @@ public class PingPong extends JPanel implements ActionListener,KeyListener {
 			
 			
 			//restricting ball to player zone's
+			//NOTE: bottom border fails when game is set to fullscreen
 			if (xBall >= xPlayer2 && yBall >= yPlayer2 ) {
 				xBallVel=2;
 				xBallVel = -xBallVel;
@@ -156,7 +155,7 @@ public class PingPong extends JPanel implements ActionListener,KeyListener {
 				
 			}
 			
-			
+			//NOTE: not sure what this does exactly
 			//  xBall >= xPlayer2 && yBall >= yPlayer2
 			if (xBall <= x +3		  && yBall >= y ) {
 				xBallVel= 2;
@@ -204,6 +203,7 @@ public class PingPong extends JPanel implements ActionListener,KeyListener {
 			
 			
 			//bounces off bottom
+			//NOTE: needs fixed, ball goes through bottom in full screen
 			if (xBall > 0 && yBall > 322) {
 			System.out.println("Bouncing ball");
 			
@@ -214,6 +214,7 @@ public class PingPong extends JPanel implements ActionListener,KeyListener {
 		}
 			
 			//bounces off top
+			//NOTE: needs fixed, just never works
 			if (xBall > 0 && yBall < 0) {
 				System.out.println("Bouncing ball off top");
 				
@@ -240,6 +241,7 @@ public class PingPong extends JPanel implements ActionListener,KeyListener {
 			int player1Sc =0;
 			int player2Sc =0;
 			
+			//Check to see if either player has scored
 			if (xBall < -3) {
 				player2Sc +=1;
 				System.out.println("Player 2 scores");
@@ -285,13 +287,14 @@ public class PingPong extends JPanel implements ActionListener,KeyListener {
 
 		
 	
-
+	//not sure what this does or why it is here
 	public void keyReleased(KeyEvent arg0) {
 		
 		velY = 0;
 		velY2=0;
 	}
 
+	//Controls for players
 	public void keyPressed(KeyEvent e) {
 		int c = e.getKeyCode();
 		if ( c == KeyEvent.VK_UP) {
@@ -322,7 +325,7 @@ public class PingPong extends JPanel implements ActionListener,KeyListener {
 
 
 
-	
+	//Not sure why this is here, think it may just need to exist to validate something
 	public void keyTyped(KeyEvent e) {
 
 		
