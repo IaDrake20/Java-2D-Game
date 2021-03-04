@@ -18,151 +18,148 @@ import javax.swing.Timer;
 import java.util.Random;
 public class PingPong extends JPanel implements ActionListener,KeyListener {
 
+	Random random = new Random();
 	
+	Timer tm = new Timer(5, this);
+		
+	//begins drawn animation at top left corner
+	int x = 0;
+	static	int y = 0;
+		
+	int velY = 2;
+	int velY2 = 2;
 
-	
-		Random random = new Random();
-	
-		Timer tm = new Timer(5, this);
+	int xPlayer2 = 360;
+	static int yPlayer2 = 0;
 		
-		//begins drawn animation at top left corner
-		int x = 0;
-		static	int y = 0;
+	int xBall = 30;
+	int yBall = 30;
 		
-		int velY = 2;
-		int velY2 = 2;
-
-		int xPlayer2 = 360;
-		static int yPlayer2 = 0;
+	int xBallVel = 1;
+	int yBallVel = 0;
 		
-		int xBall = 30;
-		int yBall = 30;
+	int stopMove = 322;
 		
-		int xBallVel = 1;
-		int yBallVel = 0;
+	public static boolean overlap1( int x, int x2, int y, int y2) {
+		//System.out.println("called the method overlap1");
+		  boolean b1 = false;
+		  if (x == x2 && y == y2) {
+		       System.out.println("overlap");
+		       b1 = true;
+		  }
+		       return b1;
+	}
 		
-		int stopMove = 322;
-		
-		public static boolean overlap1( int x, int x2, int y, int y2) {
-		      //  System.out.println("called the method overlap1");
-		        boolean b1 = false;
-		        if (x == x2 && y == y2) {
-		        	System.out.println("overlap");
-		        	b1 = true;
-		        }
-		        return b1;
-			}
-		
-		public void paintComponent(Graphics g) {
+	public void paintComponent(Graphics g) {
 			
-			super.paintComponent(g);
+		super.paintComponent(g);
 			
-			requestFocus(true);
-			g.setColor(Color.RED);
+		requestFocus(true);
+		g.setColor(Color.RED);
 			
-			//character 1
-			g.fillRect(x,y,20,30);
+		//character 1
+		g.fillRect(x,y,20,30);
 			
-			//character 2
-			g.setColor(Color.gray);
-			g.fillRect(xPlayer2,yPlayer2, 20,30);	
+		//character 2
+		g.setColor(Color.gray);
+		g.fillRect(xPlayer2,yPlayer2, 20,30);	
 			
-			//ball
-			g.setColor(Color.GREEN);
-			g.fillRect(xBall, yBall, 10, 10);
+		//ball
+		g.setColor(Color.GREEN);
+		g.fillRect(xBall, yBall, 10, 10);
 			
-			//center line
-			g.setColor(Color.blue);
-			g.drawLine(xPlayer2/2, -2, xPlayer2/2, 1000);
+		//center line
+		g.setColor(Color.blue);
+		g.drawLine(xPlayer2/2, -2, xPlayer2/2, 1000);
 			
-			tm.start();
-		}
+		tm.start();
+	}
 		
 		
 	    
 	    
 		
 		
-		public PingPong(){
-			tm.start();
+	public PingPong(){
+		tm.start();
 
-			addKeyListener(this);
+		addKeyListener(this);
 
-			setFocusable(true);
+		setFocusable(true);
 
-			setFocusTraversalKeysEnabled(true);
+		setFocusTraversalKeysEnabled(true);
+	}
+		
+		
+	public void actionPerformed(ActionEvent e) {
+			
+		if (yPlayer2 > stopMove ) {
+			yPlayer2 = stopMove-2;
 		}
-		
-		
-		public void actionPerformed(ActionEvent e) {
 			
-			if (yPlayer2 > stopMove ) {
-				yPlayer2 = stopMove-2;
-			}
+		if (yPlayer2 <= 0) {
+			yPlayer2 = 1;
+		}
 			
-			if (yPlayer2 <= 0) {
-				yPlayer2 = 1;
-			}
-			
-			if (y > stopMove ) {
+		if (y > stopMove ) {
 				
-				y = stopMove-2;
-			}
+			y = stopMove-2;
+		}
 			
-			if (y < 0) {
-				y=0;
-			}
+		if (y < 0) {
+			y=0;
+		}
 			
-			//set ball to always move
-			//if (xBall != -50) {
-			//	xBallVel= 3;
-		//	}
-		//	if (yBall != -999999999) {
-		//		yBallVel = 3;
-		//	}
+		//set ball to always move
+		//if (xBall != -50) {
+		//	xBallVel= 3;
+	//	}
+		//if (yBall != -999999999) {
+	//		yBallVel = 3;
+	//	}
 			
 			
 			
-			//restricting ball to player zone's
-			if (xBall >= xPlayer2 && yBall >= yPlayer2 ) {
-				xBallVel=2;
-				xBallVel = -xBallVel;
-			//	System.out.println("works");
+		//restricting ball to player zone's
+		if (xBall >= xPlayer2 && yBall >= yPlayer2 ) {
+			xBallVel=2;
+			xBallVel = -xBallVel;
+			//System.out.println("works");
 				
-				//collision algorithm
-				
-					System.out.println("Collision between player 2 and ball");
+			//collision algorithm
+			System.out.println("Collision between player 2 and ball");
 						 
-					//ball will bounce in three ways,right middle top,right middle, right middle bottom
-					int ballPath=random.nextInt(4);
-					System.out.println(ballPath);
-					 if (ballPath ==1) {
-							 //top middle path
-						 xBallVel=-2;
-						 yBallVel=2;
-							// System.out.println("Top");
+			//ball will bounce in three ways,right middle top,right middle, right middle bottom
+			int ballPath=random.nextInt(4);
+			System.out.println(ballPath);
+			if (ballPath ==1) {
+					//top middle path
+					xBallVel=-2;
+					yBallVel=2;
+				        //System.out.println("Top");
 							 
-					 }
+			}
 						 
-					 if (ballPath == 2) {
-							 //middle path
-						 xBallVel = -2;
-						//	 System.out.println("Middle");
-					 }
+			if (ballPath == 2) {
+				//middle path
+				xBallVel = -2;
+				//System.out.println("Middle");
+			}
 						 
-					 if (ballPath == 3) {
+			if (ballPath == 3) {
 						 
-							 //bottom middle path
-						 xBallVel = -2;
-						 yBallVel = -2;
-						//	 System.out.println("Bottom");
-					 }	
-				
+				//bottom middle path
+				xBallVel = -2;
+				yBallVel = -2;
+				//System.out.println("Bottom");
+			}	
+			
+			//see what this closes
 			}
 			
 			
-			//  xBall >= xPlayer2 && yBall >= yPlayer2
-			if (xBall <= x +3		  && yBall >= y ) {
+			//xBall >= xPlayer2 && yBall >= yPlayer2
+			if (xBall <= x +3 && yBall >= y ) {
 				xBallVel= 2;
 				xBallVel = +xBallVel;
 				
