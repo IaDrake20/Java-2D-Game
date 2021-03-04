@@ -1,4 +1,8 @@
-package Ians_Game;
+/*
+* Ian Drake
+* 11/5/2017
+*Recreate Pong
+*/
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
