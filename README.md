@@ -1,5 +1,5 @@
 # Java-2D-Game
-This is a game I mainly wrote back in highschool during sophomore year. I have decided to revisit it and finish what I started. Feel free to download the .java file and run it for yourself. 
+This is a game I mainly wrote back in highschool during sophomore year. I have decided to revisit it and finish what I started. Feel free to download the .java file and run it for yourself. I am still trying to sort everything out in spare time, so the code is still a mess thanks to past self.
 
 Objectives: 
   1) Patch holes in the map where the ping pong ball can escape
