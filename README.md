@@ -5,5 +5,5 @@ Objectives:
   1) Patch holes in the map where the ping pong ball can escape
   2) make a version that doesn't have debugging text
   3) change ball to "bounce" based off of angle and not in a random direction...IE add physics
-  4) add local area network support to the game (maybe switch priority with 4)
+  4) add local area network support to the game (maybe switch priority with 5)
   5) Add xbox controller support? (maybe switch priority with 3)
